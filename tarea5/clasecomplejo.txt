@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+class Complejo {
+	
+	
+
+    // constructor parametrizado
+public:
+	
+		
+    double Re, Img;
+    Complejo(){
+        Re = 0;
+        Img = 0;
+    }
+    
+    Complejo(const double Re,const double Img){
+        this->Re = Re;
+        this->Img = Img;
+    }
+    
+    void show_num(){
+    	cout << Re << "+" <<Img << "i" <<endl;
+	}
+};
+
+// Sobrecarga del operador +
+Complejo operator +(const Complejo &num1,const Complejo &num2)
+{
+    Complejo res( num1.Re + num2.Re, num1.Img + num2.Img );
+    return res;
+}
+
+// Sobrecarga del operador -
+Complejo operator -(const Complejo &num1,const Complejo &num2)
+{
+    Complejo res( num1.Re - num2.Re, num1.Img - num2.Img );
+    return res;
+}
+
+//Sobrecarga del operador *
+Complejo operator *(const Complejo &num1,const Complejo &num2)
+{
+    Complejo res( num1.Re*num2.Re - num1.Img*num2.Img, num1.Re*num2.Img + num1.Img*num2.Re );
+    return res;
+}
+
+//Sobrecarga del operador //
+Complejo operator /(const Complejo &num1,const Complejo &num2)
+{
+    Complejo res( (num1.Re*num2.Re + num1.Img*num2.Img)/(pow(num2.Re, 2)+ pow(num2.Img, 2)),  
+	(-num1.Re*num2.Img + num1.Img*num2.Re )/(pow(num2.Re, 2)+ pow(num2.Img, 2)));
+    return res;
+}
+
+//Sobrecarga del operador ==
+bool operator ==(const Complejo &num1,const Complejo &num2){
+    if (num1.Re == num2.Re && num1.Img == num2.Img){
+    	return true;
+	}
+	else{
+		return false;
+	}
+    
+}
